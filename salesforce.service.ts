@@ -121,63 +121,27 @@ export default class SalesforceService {
 
   public async getAccesTokenSalesforce(): Promise<any> {
     try {
-      const {
-        STATUS,
-        BASE_URL_SALESFORCE_AUTH_TOKEN_PROD,
-        SALESFORCE_USERNAME,
-        SALESFORCE_PASSWORD,
-        SALESFORCE_CLIENT_ID,
-        SALESFORCE_CLIENT_SECRET,
-      } = process.env;
-
-      if (STATUS === "Development") {
-        const response = await fetch(
-          `${BASE_URL_SALESFORCE_AUTH_TOKEN_PROD}?grant_type=password&username=${SALESFORCE_USERNAME}&password=${SALESFORCE_PASSWORD}&client_id=${SALESFORCE_CLIENT_ID}&client_secret=${SALESFORCE_CLIENT_SECRET}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        const json = await response.json();
-
-        return {
-          token: json.access_token,
-        };
-      }
-
-      const details: any = {
-        grant_type: "password",
-        username: SALESFORCE_USERNAME,
-        password: SALESFORCE_PASSWORD,
-        client_id: SALESFORCE_CLIENT_ID,
-        client_secret: SALESFORCE_CLIENT_SECRET,
-      };
-
-      const formBody = Object.keys(details)
-        .map(
-          (key: any) =>
-            encodeURIComponent(key) + "=" + encodeURIComponent(details[key])
-        )
-        .join("&");
-      if (typeof BASE_URL_SALESFORCE_AUTH_TOKEN_PROD === "undefined") {
-        throw new Error("BASE_URL_SALESFORCE_AUTH_TOKEN_PROD is undefined");
-      }
-
-      const response = await fetch(BASE_URL_SALESFORCE_AUTH_TOKEN_PROD, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-        },
-        body: formBody,
-      });
+      let URL_TOKEN = "https://test.salesforce.com/services/oauth2/token";
+      let SALESFORCE_USERNAME = "centomapp@optecllc.com.sandbox";
+      let SALESFORCE_PASSWORD = "f%26L!aQ2Vbp6*YFjq9CuMk2j9GuztJQuL0BzmxkSx";
+      let SALESFORCE_CLIENT_ID =
+        "3MVG9ZM6Cuht.9SvMiw8GG_hpcslErhK8K8RVhByBr861ATGmbbmmGTK_I5y2_5q9omKdk26AUs8pFgvvrXod";
+      let SALESFORCE_CLIENT_SECRET =
+        "D37143DC22A7EC6E023AFEBCF06B371F5AF3D4BAB97A9C3EB481CEF822DEEF38";
+      const response = await fetch(
+        `${URL_TOKEN}?grant_type=password&username=${SALESFORCE_USERNAME}&password=${SALESFORCE_PASSWORD}&client_id=${SALESFORCE_CLIENT_ID}&client_secret=${SALESFORCE_CLIENT_SECRET}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const json = await response.json();
+
       return {
         token: json.access_token,
-        ...details,
       };
     } catch (error) {
       console.error("Error in getAccesTokenSalesforce: ", error);
