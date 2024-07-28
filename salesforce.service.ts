@@ -16,7 +16,8 @@ interface IMainPost {
   functionCenTOM?: string;
 }
 
-const BASE_URL_SALESFORCE = process.env.BASE_URL_SALESFORCE;
+const BASE_URL_SALESFORCE =
+  "https://optecllc--sandbox.sandbox.my.salesforce.com/services/";
 const APEX_REST_PATH = `${BASE_URL_SALESFORCE}apexrest/`;
 const CENTOM_URL = `https://www.optecanalytics.com/api/`;
 
@@ -25,7 +26,7 @@ export const urls = {
   salesForceNoApexrest: BASE_URL_SALESFORCE as string,
   cenTOM: CENTOM_URL,
 };
-const STATUS = process.env.STATUS;
+// const STATUS = process.env.STATUS;
 
 export default class SalesforceService {
   protected urls = urls;
