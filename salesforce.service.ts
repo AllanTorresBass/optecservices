@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-
-dotenv.config();
 interface IMainGet {
   method: string;
   token: string | null;
