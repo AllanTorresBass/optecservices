@@ -170,7 +170,7 @@ export default class SalesforceService {
       let json = await this.mainGet({
         method:
           "workorders/mobile?customerId=001DP00001qgHggYAE&status=Completed",
-        url: urls.salesForce,
+        url: "https://optecllc--sandbox.sandbox.my.salesforce.com/services/",
         token: tokenSalesforce,
       });
 
