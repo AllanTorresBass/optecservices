@@ -119,15 +119,15 @@ export default class SalesforceService {
     }
   };
 
-  public async getAccesTokenSalesforce(): Promise<any> {
+  public async getAccesTokenSalesforce(
+    SALESFORCE_USERNAME: any,
+    SALESFORCE_PASSWORD: any,
+    SALESFORCE_CLIENT_ID: any,
+    SALESFORCE_CLIENT_SECRET: any
+  ): Promise<any> {
     try {
       let URL_TOKEN = "https://test.salesforce.com/services/oauth2/token";
-      let SALESFORCE_USERNAME = "centomapp@optecllc.com.sandbox";
-      let SALESFORCE_PASSWORD = "f%26L!aQ2Vbp6*YFjq9CuMk2j9GuztJQuL0BzmxkSx";
-      let SALESFORCE_CLIENT_ID =
-        "3MVG9ZM6Cuht.9SvMiw8GG_hpcslErhK8K8RVhByBr861ATGmbbmmGTK_I5y2_5q9omKdk26AUs8pFgvvrXod";
-      let SALESFORCE_CLIENT_SECRET =
-        "D37143DC22A7EC6E023AFEBCF06B371F5AF3D4BAB97A9C3EB481CEF822DEEF38";
+
       const response = await fetch(
         `${URL_TOKEN}?grant_type=password&username=${SALESFORCE_USERNAME}&password=${SALESFORCE_PASSWORD}&client_id=${SALESFORCE_CLIENT_ID}&client_secret=${SALESFORCE_CLIENT_SECRET}`,
         {
