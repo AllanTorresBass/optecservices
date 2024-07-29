@@ -126,7 +126,8 @@ export default class SalesforceService {
     SALESFORCE_CLIENT_SECRET: any
   ): Promise<any> {
     try {
-      let URL_TOKEN = "https://test.salesforce.com/services/oauth2/token";
+      let URL_TOKEN =
+        "https://optecllc--sandbox.sandbox.my.salesforce.com/services/oauth2/token";
 
       const response = await fetch(
         `${URL_TOKEN}?grant_type=password&username=${SALESFORCE_USERNAME}&password=${SALESFORCE_PASSWORD}&client_id=${SALESFORCE_CLIENT_ID}&client_secret=${SALESFORCE_CLIENT_SECRET}`,
